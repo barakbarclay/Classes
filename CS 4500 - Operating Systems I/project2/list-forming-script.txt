@@ -1,0 +1,82 @@
+#!/bin/bash
+# int-or-string.sh
+       
+avg=0
+count=0
+while [ $count -le 9 ]
+do
+	let "avg += $(./list-forming 2)"
+	((count++))
+done 
+let "avg /= 10" 
+echo "$avg"
+
+avg=0
+count=0
+while [ $count -le 9 ]
+do
+	let "avg += $(./list-forming 4)"
+	((count++))
+done 
+let "avg /= 10" 
+echo "$avg"
+
+avg=0
+count=0
+while [ $count -le 9 ]
+do
+	let "avg += $(./list-forming 8)"
+	((count++))
+done 
+let "avg /= 10" 
+echo "$avg"
+
+avg=0
+count=0
+while [ $count -le 9 ]
+do
+	let "avg += $(./list-forming 16)"
+	((count++))
+done 
+let "avg /= 10" 
+echo "$avg"
+
+avg=0
+count=0
+while [ $count -le 9 ]
+do
+	let "avg += $(./list-forming 32)"
+	((count++))
+done 
+let "avg /= 10" 
+echo "$avg"
+
+avg=0
+count=0
+while [ $count -le 9 ]
+do
+	let "avg += $(./list-forming 64)"
+	((count++))
+done 
+let "avg /= 10" 
+echo "$avg"
+
+avg=0
+count=0
+while [ $count -le 9 ]
+do
+	let "avg += $(./list-forming 128)"
+	((count++))
+done 
+let "avg /= 10" 
+echo "$avg"
+
+avg=0
+count=0
+while [ $count -le 9 ]
+do
+	let "avg += $(./list-forming 256)"
+	((count++))
+done 
+let "avg /= 10" 
+echo "$avg"

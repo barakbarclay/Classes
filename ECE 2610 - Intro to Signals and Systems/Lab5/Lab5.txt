@@ -1,0 +1,62 @@
+>> wn={1 0.8 0.8^2 0.8^3 0.8^4 0.8^5 0.8^6 0.8^7 0.8^8 0.8^9}
+
+wn = 
+
+    [1]    [0.8000]    [0.6400]    [0.5120]    [0.4096]    [0.3277]    [0.2621]    [0.2097]    [0.1678]    [0.1342]
+
+>> wn2={0 1 0.8 0.8^2 0.8^3 0.8^4 0.8^5 0.8^6 0.8^7 0.8^8 0.8^9};
+>> yn=wn-0.8*wn2;
+Undefined operator '*' for input arguments of type 'cell'.
+ 
+>> yn=wn-0.8.*wn2;
+Undefined operator '.*' for input arguments of type 'cell'.
+ 
+>> wn={1 0.8 0.8^2 0.8^3 0.8^4 0.8^5 0.8^6 0.8^7 0.8^8 0.8^9 0}
+
+wn = 
+
+    [1]    [0.8000]    [0.6400]    [0.5120]    [0.4096]    [0.3277]    [0.2621]    [0.2097]    [0.1678]    [0.1342]    [0]
+
+>> yn=wn-0.8*wn2;
+Undefined operator '*' for input arguments of type 'cell'.
+ 
+>> yn=wn-(0.8*wn2);
+Undefined operator '*' for input arguments of type 'cell'.
+ 
+>> wn=[1 0.8 0.8^2 0.8^3 0.8^4 0.8^5 0.8^6 0.8^7 0.8^8 0.8^9 0]
+
+wn =
+
+    1.0000    0.8000    0.6400    0.5120    0.4096    0.3277    0.2621    0.2097    0.1678    0.1342         0
+
+>> wn2=[0 1 0.8 0.8^2 0.8^3 0.8^4 0.8^5 0.8^6 0.8^7 0.8^8 0.8^9];
+>> yn=wn-(0.8*wn2);
+>> yn
+
+yn =
+
+    1.0000         0         0         0   -0.0000         0         0   -0.0000         0         0   -0.1074
+
+
+
+
+
+>> subplot(4,1,1);plot(ww,abs(H));
+>> subplot(4,1,1);plot(ww,angle(H));
+>> yn=[1,-0.8];
+>> H2=freqz(yn,1,ww);
+>> subplot(4,1,2);plot(ww,angle(H));
+>> subplot(4,1,1);plot(ww,abs(H));
+>> subplot(4,1,3);plot(ww,abs(H2));
+>> subplot(4,1,4);plot(ww,angle(H2));
+>> subplot(6,1,2);plot(ww,angle(H));
+>> subplot(6,1,1);plot(ww,abs(H));
+>> subplot(6,1,3);plot(ww,abs(H2));
+>> subplot(6,1,4);plot(ww,angle(H2));
+>> Wn=conv(wn,yn);
+>> H3=freqz(WN,1,ww);
+Undefined function or variable 'WN'.
+ 
+>> H3=freqz(Wn,1,ww);
+>> subplot(6,1,5);plot(ww,abs(H3));
+>> subplot(6,1,6);plot(ww,angle(H3));

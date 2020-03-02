@@ -1,0 +1,20 @@
+module L9TB;
+  reg clock,RA,RB,RD,Ra,Rb,Rd;
+
+L9 M1(clock,RA,RB,RD,Ra,Rb,Rd);
+  
+  initial
+  begin
+    $monitor ("RA=%d", RA);
+    $monitor ("RB=%d", RB);
+    $monitor ("RA=%d", RD);
+    $monitor ("Ra=%d", Ra);
+    $monitor ("RA=%d", Rb);
+    $monitor ("RA=%d", RD);
+    clock = 1'b0;RA=1'd6;RB=1'd2;Ra=1'd6;Rb=1'd2;
+    #5 clock = 1'b1;
+  end
+  
+  initial #20 $stop;
+  
+endmodule

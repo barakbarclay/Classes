@@ -1,0 +1,29 @@
+#!/bin/csh
+#Author:        Barak Barclay
+#Class:         CS2080.001
+#Title:         Security
+#Due Date:      14 March 2018
+#Description:   This script is like a front-end for future scripts with the friendly message to be replaced by the body of those scripts. It tests if the terminal is 
+#		athorized. For the purposes of this assignment, pts/0 is used. It also checks if there is a valid number of arguments. For this assignment, the valid
+#		of arguments is 0. If these checks are not passed, the script exits and exit codes are provided. If they are passed, a friendly message is printed. 
+#
+#Exit Values
+#       0       if sucessfully completed
+#       10      terminal not authorized
+#       20      incorrect number of arguments
+
+#validate terminal
+if ( $tty != pts/0  ) then
+echo
+exit 10
+endif
+
+#validate$#argvs
+if ( $#argv != 0 ) then
+echo
+exit 20
+endif
+
+#print friendly message
+echo hello
+exit 0

@@ -1,0 +1,15 @@
+C:/Modeltech_pe_edu_10.4a/examples/L8TB.v {1 {vlog -work work -stats=none C:/Modeltech_pe_edu_10.4a/examples/L8TB.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module L8TB
+
+Top level modules:
+	L8TB
+
+} {} {}} C:/Modeltech_pe_edu_10.4a/examples/L8.v {1 {vlog -work work -stats=none C:/Modeltech_pe_edu_10.4a/examples/L8.v
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module L8
+
+Top level modules:
+	L8
+
+} {} {}}

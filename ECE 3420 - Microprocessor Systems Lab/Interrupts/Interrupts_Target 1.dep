@@ -1,0 +1,2 @@
+Dependencies for Project 'Interrupts', Target 'Target 1': (DO NOT MODIFY !)
+F (.\Interrupts.s)(0x582E1C64)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -I "Z:\Desktop\College\MCS Lab\Interrupts\RTE"-I C:\Keil_v5\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\2.2.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 520" --pd "__MSP432P401R__ SETA 1"--list .\interrupts.lst --xref -o .\interrupts.o --depend .\interrupts.d)

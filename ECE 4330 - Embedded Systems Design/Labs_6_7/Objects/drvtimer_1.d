@@ -1,0 +1,10 @@
+.\objects\drvtimer_1.o: ..\Src\Driver\DrvTIMER.c
+.\objects\drvtimer_1.o: ..\Include\Driver\DrvTIMER.h
+.\objects\drvtimer_1.o: ..\Include\NUC1xx.h
+.\objects\drvtimer_1.o: ..\CoreSupport\core_cm0.h
+.\objects\drvtimer_1.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\drvtimer_1.o: ..\NUC1xx\system_NUC1xx.h
+.\objects\drvtimer_1.o: ..\Include\System\SysInfra.h
+.\objects\drvtimer_1.o: ..\Include\System\ModuleID.h
+.\objects\drvtimer_1.o: ..\Include\Driver\DrvSYS.h
+.\objects\drvtimer_1.o: ..\Include\Driver\DrvGPIO.h

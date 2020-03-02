@@ -1,0 +1,97 @@
+Dependencies for Project 'lab_3', Target 'Blink_LED_7Seg': (DO NOT MODIFY !)
+F (..\CoreSupport\core_cm0.c)(0x5D765E7E)(--c99 -c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\Include -I ..\Include\Driver -I ..\NUC1xx -I ..\NUC1xx\startup\arm -I ..\Src\Driver -I ..\CoreSupport -I ..\Src -I ..\Src\NUC1xx-LB_002 -I ..\Include\NUC1xx-LB_002-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525"-o .\objects\core_cm0.o --omf_browse .\objects\core_cm0.crf --depend .\objects\core_cm0.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+F (..\NUC1xx\system_NUC1xx.c)(0x5D765E80)(--c99 -c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\Include -I ..\Include\Driver -I ..\NUC1xx -I ..\NUC1xx\startup\arm -I ..\Src\Driver -I ..\CoreSupport -I ..\Src -I ..\Src\NUC1xx-LB_002 -I ..\Include\NUC1xx-LB_002-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525"-o .\objects\system_nuc1xx.o --omf_browse .\objects\system_nuc1xx.crf --depend .\objects\system_nuc1xx.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\NUC1xx\NUC1xx.h)(0x5D765E80)
+I (..\CoreSupport\core_cm0.h)(0x5D765E7F)
+I (..\NUC1xx\system_NUC1xx.h)(0x5D765E80)
+I (..\Include\System\SysInfra.h)(0x5D765E80)
+I (..\Include\System\ModuleID.h)(0x5D765E80)
+F (..\NUC1xx\startup\arm\startup_NUC1xx.s)(0x5D765E80)(--cpu Cortex-M0 --pd "__EVAL SETA 1" -g --16 --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 525"--list .\listings\startup_nuc1xx.lst --xref -o .\objects\startup_nuc1xx.o --depend .\objects\startup_nuc1xx.d)
+F (..\Src\Driver\DrvGPIO.c)(0x5D765E80)(--c99 -c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\Include -I ..\Include\Driver -I ..\NUC1xx -I ..\NUC1xx\startup\arm -I ..\Src\Driver -I ..\CoreSupport -I ..\Src -I ..\Src\NUC1xx-LB_002 -I ..\Include\NUC1xx-LB_002-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525"-o .\objects\drvgpio.o --omf_browse .\objects\drvgpio.crf --depend .\objects\drvgpio.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F920C)
+I (..\Include\NUC1xx.h)(0x5D765E7F)
+I (..\CoreSupport\core_cm0.h)(0x5D765E7F)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\NUC1xx\system_NUC1xx.h)(0x5D765E80)
+I (..\Include\System\SysInfra.h)(0x5D765E80)
+I (..\Include\System\ModuleID.h)(0x5D765E80)
+I (..\Include\Driver\DrvGPIO.h)(0x5D765E7F)
+F (..\Src\Driver\DrvSYS.c)(0x5D765E81)(--c99 -c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\Include -I ..\Include\Driver -I ..\NUC1xx -I ..\NUC1xx\startup\arm -I ..\Src\Driver -I ..\CoreSupport -I ..\Src -I ..\Src\NUC1xx-LB_002 -I ..\Include\NUC1xx-LB_002-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525"-o .\objects\drvsys.o --omf_browse .\objects\drvsys.crf --depend .\objects\drvsys.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F920C)
+I (..\Include\Driver\DrvSYS.h)(0x5D765E7F)
+I (..\Include\NUC1xx.h)(0x5D765E7F)
+I (..\CoreSupport\core_cm0.h)(0x5D765E7F)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\NUC1xx\system_NUC1xx.h)(0x5D765E80)
+I (..\Include\System\SysInfra.h)(0x5D765E80)
+I (..\Include\System\ModuleID.h)(0x5D765E80)
+F (..\Src\Driver\DrvADC.c)(0x5D765E80)(--c99 -c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\Include -I ..\Include\Driver -I ..\NUC1xx -I ..\NUC1xx\startup\arm -I ..\Src\Driver -I ..\CoreSupport -I ..\Src -I ..\Src\NUC1xx-LB_002 -I ..\Include\NUC1xx-LB_002-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525"-o .\objects\drvadc.o --omf_browse .\objects\drvadc.crf --depend .\objects\drvadc.d)
+I (..\Include\NUC1xx.h)(0x5D765E7F)
+I (..\CoreSupport\core_cm0.h)(0x5D765E7F)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\NUC1xx\system_NUC1xx.h)(0x5D765E80)
+I (..\Include\System\SysInfra.h)(0x5D765E80)
+I (..\Include\System\ModuleID.h)(0x5D765E80)
+I (..\Include\Driver\DrvADC.h)(0x5D765E7F)
+I (..\Include\Driver\DrvSYS.h)(0x5D765E7F)
+F (..\Src\Driver\DrvTIMER.c)(0x5D765E81)(--c99 -c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\Include -I ..\Include\Driver -I ..\NUC1xx -I ..\NUC1xx\startup\arm -I ..\Src\Driver -I ..\CoreSupport -I ..\Src -I ..\Src\NUC1xx-LB_002 -I ..\Include\NUC1xx-LB_002-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525"-o .\objects\drvtimer.o --omf_browse .\objects\drvtimer.crf --depend .\objects\drvtimer.d)
+I (..\Include\Driver\DrvTIMER.h)(0x5D765E7F)
+I (..\Include\NUC1xx.h)(0x5D765E7F)
+I (..\CoreSupport\core_cm0.h)(0x5D765E7F)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\NUC1xx\system_NUC1xx.h)(0x5D765E80)
+I (..\Include\System\SysInfra.h)(0x5D765E80)
+I (..\Include\System\ModuleID.h)(0x5D765E80)
+I (..\Include\Driver\DrvSYS.h)(0x5D765E7F)
+I (..\Include\Driver\DrvGPIO.h)(0x5D765E7F)
+F (.\Blink_2.c)(0x5DA49351)(--c99 -c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\Include -I ..\Include\Driver -I ..\NUC1xx -I ..\NUC1xx\startup\arm -I ..\Src\Driver -I ..\CoreSupport -I ..\Src -I ..\Src\NUC1xx-LB_002 -I ..\Include\NUC1xx-LB_002-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525"-o .\objects\blink_2.o --omf_browse .\objects\blink_2.crf --depend .\objects\blink_2.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F920C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599F920C)
+I (..\Include\NUC1xx.h)(0x5D765E7F)
+I (..\CoreSupport\core_cm0.h)(0x5D765E7F)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\NUC1xx\system_NUC1xx.h)(0x5D765E80)
+I (..\Include\System\SysInfra.h)(0x5D765E80)
+I (..\Include\System\ModuleID.h)(0x5D765E80)
+I (..\Include\Driver\DrvSYS.h)(0x5D765E7F)
+I (..\Include\Driver\DrvGPIO.h)(0x5D765E7F)
+I (..\Include\NUC1xx-LB_002\LCD_Driver.h)(0x5D765E7F)
+I (..\Include\NUC1xx-LB_002\Seven_Segment.h)(0x5D765E7F)
+I (..\Include\Driver\DrvADC.h)(0x5D765E7F)
+I (..\Include\Driver\DrvTimer.h)(0x5D765E7F)
+I (..\Include\NUC1xx-LB_002\ScanKey.h)(0x5D765E7F)
+F (..\Src\NUC1xx-LB_002\Ascii_Table.C)(0x5D765E81)(--c99 -c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\Include -I ..\Include\Driver -I ..\NUC1xx -I ..\NUC1xx\startup\arm -I ..\Src\Driver -I ..\CoreSupport -I ..\Src -I ..\Src\NUC1xx-LB_002 -I ..\Include\NUC1xx-LB_002-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525"-o .\objects\ascii_table.o --omf_browse .\objects\ascii_table.crf --depend .\objects\ascii_table.d)
+F (..\Src\NUC1xx-LB_002\ScanKey.c)(0x5D765E81)(--c99 -c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\Include -I ..\Include\Driver -I ..\NUC1xx -I ..\NUC1xx\startup\arm -I ..\Src\Driver -I ..\CoreSupport -I ..\Src -I ..\Src\NUC1xx-LB_002 -I ..\Include\NUC1xx-LB_002-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525"-o .\objects\scankey.o --omf_browse .\objects\scankey.crf --depend .\objects\scankey.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F920C)
+I (..\Include\Driver\DrvGPIO.h)(0x5D765E7F)
+I (..\Include\NUC1xx.h)(0x5D765E7F)
+I (..\CoreSupport\core_cm0.h)(0x5D765E7F)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\NUC1xx\system_NUC1xx.h)(0x5D765E80)
+I (..\Include\System\SysInfra.h)(0x5D765E80)
+I (..\Include\System\ModuleID.h)(0x5D765E80)
+I (..\Include\NUC1xx-LB_002\ScanKey.h)(0x5D765E7F)
+F (..\Src\NUC1xx-LB_002\Seven_Segment.c)(0x5D765E81)(--c99 -c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\Include -I ..\Include\Driver -I ..\NUC1xx -I ..\NUC1xx\startup\arm -I ..\Src\Driver -I ..\CoreSupport -I ..\Src -I ..\Src\NUC1xx-LB_002 -I ..\Include\NUC1xx-LB_002-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525"-o .\objects\seven_segment.o --omf_browse .\objects\seven_segment.crf --depend .\objects\seven_segment.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F920C)
+I (..\Include\NUC1xx.h)(0x5D765E7F)
+I (..\CoreSupport\core_cm0.h)(0x5D765E7F)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\NUC1xx\system_NUC1xx.h)(0x5D765E80)
+I (..\Include\System\SysInfra.h)(0x5D765E80)
+I (..\Include\System\ModuleID.h)(0x5D765E80)
+I (..\Include\Driver\DrvGPIO.h)(0x5D765E7F)
+I (..\Include\Driver\DrvSYS.h)(0x5D765E7F)
+I (..\Include\NUC1xx-LB_002\Seven_Segment.h)(0x5D765E7F)
+F (..\Src\NUC1xx-LB_002\LCD_Driver.c)(0x5D765E81)(--c99 -c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I ..\Include -I ..\Include\Driver -I ..\NUC1xx -I ..\NUC1xx\startup\arm -I ..\Src\Driver -I ..\CoreSupport -I ..\Src -I ..\Src\NUC1xx-LB_002 -I ..\Include\NUC1xx-LB_002-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="525"-o .\objects\lcd_driver.o --omf_browse .\objects\lcd_driver.crf --depend .\objects\lcd_driver.d)
+I (..\Include\NUC1xx.h)(0x5D765E7F)
+I (..\CoreSupport\core_cm0.h)(0x5D765E7F)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (..\NUC1xx\system_NUC1xx.h)(0x5D765E80)
+I (..\Include\System\SysInfra.h)(0x5D765E80)
+I (..\Include\System\ModuleID.h)(0x5D765E80)
+I (..\Include\Driver\DrvSYS.h)(0x5D765E7F)
+I (..\Include\Driver\DrvSPI.h)(0x5D765E7F)
+I (..\Include\Driver\DrvGPIO.h)(0x5D765E7F)
+I (..\Include\NUC1xx-LB_002\LCD_Driver.h)(0x5D765E7F)

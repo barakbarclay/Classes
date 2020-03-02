@@ -1,0 +1,52 @@
+Script started on Sun 04 Mar 2018 08:18:45 PM MST
+[bbarclay@blanca ~]$ echo eh[K[Khello f[K> file1
+[bbarclay@blanca ~]$ more file1
+hello
+[bbarclay@blanca ~]$ echo "hello
+> hello again" > file2
+[bbarclay@blanca ~]$ more file [K2
+hello
+hello again
+[bbarclay@blanca ~]$ more file2echo "hello
+hello again" > file2[A[Cmore file1[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho hello > file1logout[Kexit[Kstopexitlogoutecho hello > file1more file1[Kecho "hello
+hello again" > file2[A[Cmore file2[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kmore file2echo "hello
+hello again" > file2[A[Cmore file1[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho hello > file1logout[Kexit[Kstopclear"[Kecho d"This is a fact $facts in our life."[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C'This is a fact '$facts' in our life."[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C"This is a fact $facts in our life."[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfacts="UNIX vs. Others"[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmore file2[Kfacts="UNIX vs. Others"
+[bbarclay@blanca ~]$ facts="UNIX vs. Others"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmore file2[Kecho "hello
+hello again" > file2[A[Cmore file1[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho hello > file1logout[Kexit[Kstopclear"[Kecho d"This is a fact $facts in our life."
+This is a fact UNIX vs. Others in our life.
+[bbarclay@blanca ~]$ echo "This is a fact $facts in our life."[C[C'$facts in our life."[C[C[C[C[C[C[C' in our life."
+This is a fact 'UNIX vs. Others' in our life.
+[bbarclay@blanca ~]$ echo "This is a fact '$facts' in our life."$facts in our life."[K'$facts' in our life."$facts in our life."[K[C/$facts in our life."
+This is a fact /UNIX vs. Others in our life.
+[bbarclay@blanca ~]$ echo "This is a fact /$facts in our life."[C$facts in our life."[K\$facts in our life."
+This is a fact $facts in our life.
+[bbarclay@blanca ~]$ echo "This is a fact \$facts in our life."$facts in our life."[K"$facts in our life."[C[C[C[C[C[C" in our life."
+This is a fact UNIX vs. Others in our life.
+[bbarclay@blanca ~]$ echo "This is a fact "$facts" in our life."\ "$facts" in our life." "$facts" in our life."[K[C\"$facts" in our life."[C[C[C[C[C[C[C\" in our life."
+This is a fact "UNIX vs. Others" in our life.
+[bbarclay@blanca ~]$ ifr[K[K[Kfirst=pa[K[Kparent
+[bbarclay@blanca ~]$ echo $first
+parent
+[bbarclay@blanca ~]$ $0
+[bbarclay@blanca ~]$ echo $0
+bash
+[bbarclay@blanca ~]$ bach[K[Ksh
+[bbarclay@blanca ~]$ echo[K[K[K[Kecho $first
+
+[bbarclay@blanca ~]$ secod[Knd=subshe[Kell
+[bbarclay@blanca ~]$ exit
+exit
+[bbarclay@blanca ~]$ echo $first
+
+[bbarclay@blanca ~]$ echo $first[K[K[K[K[Ksecond
+
+[bbarclay@blanca ~]$ exit
+exit
+[bbarclay@blanca ~]$ exit
+exit
+
+Script done on Sun 04 Mar 2018 08:30:33 PM MST

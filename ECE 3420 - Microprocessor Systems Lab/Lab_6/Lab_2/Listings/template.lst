@@ -1,0 +1,663 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;.global main
+    2 00000000         
+    3 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
+2
+    4 00000000         ;    INCLUDE msp432.h
+    5 00000000                 THUMB
+    6 00000000         
+    7 00000000 40004C00 
+                       P1IN    EQU              0x40004C00  ; Port 1 Input
+    8 00000000 40004C01 
+                       P2IN    EQU              0x40004C01  ; Port 2 Input
+    9 00000000 40004C03 
+                       P2OUT   EQU              0x40004C03  ; Port 2 Output
+   10 00000000 40004C02 
+                       P1OUT   EQU              0x40004C02  ; Port 1 Output
+   11 00000000 40004C04 
+                       P1DIR   EQU              0x40004C04  ; Port 1 Direction
+   12 00000000 40004C05 
+                       P2DIR   EQU              0x40004C05  ; Port 2 Direction
+   13 00000000 40004C06 
+                       P1REN   EQU              0x40004C06  ; Port 1 Resistor E
+                                                            nable
+   14 00000000 40004C07 
+                       P2REN   EQU              0x40004C07  ; Port 2 Resistor E
+                                                            nable
+   15 00000000 40004C08 
+                       P1DS    EQU              0x40004C08  ; Port 1 Drive Stre
+                                                            ngth
+   16 00000000 40004C09 
+                       P2DS    EQU              0x40004C09  ; Port 2 Drive Stre
+                                                            ngth
+   17 00000000 40004C0A 
+                       P1SEL0  EQU              0x40004C0A  ; Port 1 Select 0
+   18 00000000 40004C0B 
+                       P2SEL0  EQU              0x40004C0B  ; Port 2 Select 0
+   19 00000000 40004C0C 
+                       P1SEL1  EQU              0x40004C0C  ; Port 1 Select 1
+   20 00000000 40004C0D 
+                       P2SEL1  EQU              0x40004C0D  ; Port 2 Select 1
+   21 00000000 40004C16 
+                       P1SELC  EQU              0x40004C16  ; Port 1 Complement
+                                                             Select
+   22 00000000 40004C17 
+                       P2SELC  EQU              0x40004C17  ; Port 2 Complement
+                                                             Select
+   23 00000000 40004C18 
+                       P1IES   EQU              0x40004C18  ; Port 1 Interrupt 
+                                                            Edge Select
+   24 00000000 40004C19 
+                       P2IES   EQU              0x40004C19  ; Port 2 Interrupt 
+                                                            Edge Select
+   25 00000000 40004C1A 
+                       P1IE    EQU              0x40004C1A  ; Port 1 Interrupt 
+                                                            Enable
+   26 00000000 40004C1B 
+                       P2IE    EQU              0x40004C1B  ; Port 2 Interrupt 
+                                                            Enable
+   27 00000000 40004C1C 
+                       P1IFG   EQU              0x40004C1C  ; Port 1 Interrupt 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                                                            Flag
+   28 00000000 40004C1D 
+                       P2IFG   EQU              0x40004C1D  ; Port 2 Interrupt 
+                                                            Flag
+   29 00000000         
+   30 00000000 E000E400 
+                       NVIC_IPR0
+                               EQU              0xE000E400  ; Irq 0 to 3 Priori
+                                                            ty Register */
+   31 00000000 E000E404 
+                       NVIC_IPR1
+                               EQU              0xE000E404  ; Irq 4 to 7 Priori
+                                                            ty Register */
+   32 00000000 E000E408 
+                       NVIC_IPR2
+                               EQU              0xE000E408  ; Irq 8 to 11 Prior
+                                                            ity Register */
+   33 00000000 E000E40C 
+                       NVIC_IPR3
+                               EQU              0xE000E40C  ; Irq 12 to 15 Prio
+                                                            rity Register */
+   34 00000000 E000E410 
+                       NVIC_IPR4
+                               EQU              0xE000E410  ; Irq 16 to 19 Prio
+                                                            rity Register */
+   35 00000000 E000E414 
+                       NVIC_IPR5
+                               EQU              0xE000E414  ; Irq 20 to 23 Prio
+                                                            rity Register */
+   36 00000000 E000E418 
+                       NVIC_IPR6
+                               EQU              0xE000E418  ; Irq 24 to 27 Prio
+                                                            rity Register */
+   37 00000000 E000E41C 
+                       NVIC_IPR7
+                               EQU              0xE000E41C  ; Irq 28 to 31 Prio
+                                                            rity Register */
+   38 00000000 E000E420 
+                       NVIC_IPR8
+                               EQU              0xE000E420  ; Irq 32 to 35 Prio
+                                                            rity Register */
+   39 00000000 E000E424 
+                       NVIC_IPR9
+                               EQU              0xE000E424  ; Irq 36 to 39 Prio
+                                                            rity Register */
+   40 00000000 E000E428 
+                       NVIC_IPR10
+                               EQU              0xE000E428  ; Irq 40 to 43 Prio
+                                                            rity Register */
+   41 00000000 E000E42C 
+                       NVIC_IPR11
+                               EQU              0xE000E42C  ; Irq 44 to 47 Prio
+                                                            rity Register */
+   42 00000000 E000E430 
+                       NVIC_IPR12
+                               EQU              0xE000E430  ; Irq 48 to 51 Prio
+                                                            rity Register */
+   43 00000000 E000E434 
+                       NVIC_IPR13
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+                               EQU              0xE000E434  ; Irq 52 to 55 Prio
+                                                            rity Register */
+   44 00000000 E000E438 
+                       NVIC_IPR14
+                               EQU              0xE000E438  ; Irq 56 to 59 Prio
+                                                            rity Register */
+   45 00000000 E000E43C 
+                       NVIC_IPR15
+                               EQU              0xE000E43C  ; Irq 60 to 63 Prio
+                                                            rity Register */
+   46 00000000         
+   47 00000000         
+   48 00000000 E000E100 
+                       NVIC_ISER0
+                               EQU              0xE000E100  ; Enable IRQ 31-0
+   49 00000000 E000E104 
+                       NVIC_ISER1
+                               EQU              0xE000E104  ; Enable IRQ 47-32
+   50 00000000         
+   51 00000000 E000E180 
+                       NVIC_ICER0
+                               EQU              0xE000E180  ; Disable IRQ 31-0
+   52 00000000 E000E184 
+                       NVIC_ICER1
+                               EQU              0xE000E184  ; Disable IRQ 47-32
+                                                            
+   53 00000000         
+   54 00000000         __main                               ; Code entry
+   55 00000000         
+   56 00000000         _init                                ; Disable watchdog 
+                                                            timer
+   57 00000000         
+   58 00000000         main                                 ; <Add your code he
+                                                            re>
+   59 00000000         
+   60 00000000 4808    loop    LDR              R0, =P1IN   ; R0 holds the port
+                                                             address
+   61 00000002 6801            LDR              R1, [R0]    ; R1 contains all 1
+                                                            ’s
+   62 00000004 2900            CMP              R1, #0x0
+   63 00000006 D001            BEQ              sub1
+   64 00000008 D105            BNE              sub2
+   65 0000000A         
+   66 0000000A E7F9            B                loop
+   67 0000000C 4A06    sub1    LDR              R2, =P1OUT
+   68 0000000E F04F 0300       LDR              R3, =0x00000000
+   69 00000012 6013            STR              R3, [R2]
+   70 00000014 E7F4            B                loop
+   71 00000016 4A04    sub2    LDR              R2, =P1OUT
+   72 00000018 F04F 3311       LDR              R3, =0x11111111
+   73 0000001C 6013            STR              R3, [R2]
+   74 0000001E BF00            NOP
+   75 00000020         
+   76 00000020 46 6F 6F 
+              00       str     DCB              "Foo",0
+   77 00000024         
+   78 00000024                 EXPORT           __main
+   79 00000024                 EXPORT           main
+   80 00000024                 END
+
+
+
+ARM Macro Assembler    Page 4 
+
+
+              40004C00 
+              40004C02 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
+erwork --depend=.\objects\template.d -o.\objects\template.o -I"Z:\Desktop\Colle
+ge\MCS Lab\Lab_6\Lab_2\RTE" -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\I
+nclude -IC:\Keil_v5\ARM\PACK\TexasInstruments\MSP432P4xx_DFP\2.2.0\Device\Inclu
+de --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 520" --prede
+fine="_RTE_ SETA 1" --predefine="__MSP432P401R__ SETA 1" --list=.\listings\temp
+late.lst template.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 3 in file template.s
+   Uses
+      None
+Comment: .text unused
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 54 in file template.s
+   Uses
+      At line 78 in file template.s
+Comment: __main used once
+_init 00000000
+
+Symbol: _init
+   Definitions
+      At line 56 in file template.s
+   Uses
+      None
+Comment: _init unused
+loop 00000000
+
+Symbol: loop
+   Definitions
+      At line 60 in file template.s
+   Uses
+      At line 66 in file template.s
+      At line 70 in file template.s
+
+main 00000000
+
+Symbol: main
+   Definitions
+      At line 58 in file template.s
+   Uses
+      At line 79 in file template.s
+Comment: main used once
+str 00000020
+
+Symbol: str
+   Definitions
+      At line 76 in file template.s
+   Uses
+      None
+Comment: str unused
+sub1 0000000C
+
+Symbol: sub1
+   Definitions
+      At line 67 in file template.s
+   Uses
+      At line 63 in file template.s
+Comment: sub1 used once
+sub2 00000016
+
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+Symbol: sub2
+   Definitions
+      At line 71 in file template.s
+   Uses
+      At line 64 in file template.s
+Comment: sub2 used once
+8 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+NVIC_ICER0 E000E180
+
+Symbol: NVIC_ICER0
+   Definitions
+      At line 51 in file template.s
+   Uses
+      None
+Comment: NVIC_ICER0 unused
+NVIC_ICER1 E000E184
+
+Symbol: NVIC_ICER1
+   Definitions
+      At line 52 in file template.s
+   Uses
+      None
+Comment: NVIC_ICER1 unused
+NVIC_IPR0 E000E400
+
+Symbol: NVIC_IPR0
+   Definitions
+      At line 30 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR0 unused
+NVIC_IPR1 E000E404
+
+Symbol: NVIC_IPR1
+   Definitions
+      At line 31 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR1 unused
+NVIC_IPR10 E000E428
+
+Symbol: NVIC_IPR10
+   Definitions
+      At line 40 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR10 unused
+NVIC_IPR11 E000E42C
+
+Symbol: NVIC_IPR11
+   Definitions
+      At line 41 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR11 unused
+NVIC_IPR12 E000E430
+
+Symbol: NVIC_IPR12
+   Definitions
+      At line 42 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR12 unused
+NVIC_IPR13 E000E434
+
+Symbol: NVIC_IPR13
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Absolute symbols
+
+   Definitions
+      At line 43 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR13 unused
+NVIC_IPR14 E000E438
+
+Symbol: NVIC_IPR14
+   Definitions
+      At line 44 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR14 unused
+NVIC_IPR15 E000E43C
+
+Symbol: NVIC_IPR15
+   Definitions
+      At line 45 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR15 unused
+NVIC_IPR2 E000E408
+
+Symbol: NVIC_IPR2
+   Definitions
+      At line 32 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR2 unused
+NVIC_IPR3 E000E40C
+
+Symbol: NVIC_IPR3
+   Definitions
+      At line 33 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR3 unused
+NVIC_IPR4 E000E410
+
+Symbol: NVIC_IPR4
+   Definitions
+      At line 34 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR4 unused
+NVIC_IPR5 E000E414
+
+Symbol: NVIC_IPR5
+   Definitions
+      At line 35 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR5 unused
+NVIC_IPR6 E000E418
+
+Symbol: NVIC_IPR6
+   Definitions
+      At line 36 in file template.s
+   Uses
+
+
+
+ARM Macro Assembler    Page 3 Alphabetic symbol ordering
+Absolute symbols
+
+      None
+Comment: NVIC_IPR6 unused
+NVIC_IPR7 E000E41C
+
+Symbol: NVIC_IPR7
+   Definitions
+      At line 37 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR7 unused
+NVIC_IPR8 E000E420
+
+Symbol: NVIC_IPR8
+   Definitions
+      At line 38 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR8 unused
+NVIC_IPR9 E000E424
+
+Symbol: NVIC_IPR9
+   Definitions
+      At line 39 in file template.s
+   Uses
+      None
+Comment: NVIC_IPR9 unused
+NVIC_ISER0 E000E100
+
+Symbol: NVIC_ISER0
+   Definitions
+      At line 48 in file template.s
+   Uses
+      None
+Comment: NVIC_ISER0 unused
+NVIC_ISER1 E000E104
+
+Symbol: NVIC_ISER1
+   Definitions
+      At line 49 in file template.s
+   Uses
+      None
+Comment: NVIC_ISER1 unused
+P1DIR 40004C04
+
+Symbol: P1DIR
+   Definitions
+      At line 11 in file template.s
+   Uses
+      None
+Comment: P1DIR unused
+P1DS 40004C08
+
+Symbol: P1DS
+   Definitions
+      At line 15 in file template.s
+   Uses
+      None
+Comment: P1DS unused
+P1IE 40004C1A
+
+
+
+ARM Macro Assembler    Page 4 Alphabetic symbol ordering
+Absolute symbols
+
+
+Symbol: P1IE
+   Definitions
+      At line 25 in file template.s
+   Uses
+      None
+Comment: P1IE unused
+P1IES 40004C18
+
+Symbol: P1IES
+   Definitions
+      At line 23 in file template.s
+   Uses
+      None
+Comment: P1IES unused
+P1IFG 40004C1C
+
+Symbol: P1IFG
+   Definitions
+      At line 27 in file template.s
+   Uses
+      None
+Comment: P1IFG unused
+P1IN 40004C00
+
+Symbol: P1IN
+   Definitions
+      At line 7 in file template.s
+   Uses
+      At line 60 in file template.s
+Comment: P1IN used once
+P1OUT 40004C02
+
+Symbol: P1OUT
+   Definitions
+      At line 10 in file template.s
+   Uses
+      At line 67 in file template.s
+      At line 71 in file template.s
+
+P1REN 40004C06
+
+Symbol: P1REN
+   Definitions
+      At line 13 in file template.s
+   Uses
+      None
+Comment: P1REN unused
+P1SEL0 40004C0A
+
+Symbol: P1SEL0
+   Definitions
+      At line 17 in file template.s
+   Uses
+      None
+Comment: P1SEL0 unused
+P1SEL1 40004C0C
+
+Symbol: P1SEL1
+
+
+
+ARM Macro Assembler    Page 5 Alphabetic symbol ordering
+Absolute symbols
+
+   Definitions
+      At line 19 in file template.s
+   Uses
+      None
+Comment: P1SEL1 unused
+P1SELC 40004C16
+
+Symbol: P1SELC
+   Definitions
+      At line 21 in file template.s
+   Uses
+      None
+Comment: P1SELC unused
+P2DIR 40004C05
+
+Symbol: P2DIR
+   Definitions
+      At line 12 in file template.s
+   Uses
+      None
+Comment: P2DIR unused
+P2DS 40004C09
+
+Symbol: P2DS
+   Definitions
+      At line 16 in file template.s
+   Uses
+      None
+Comment: P2DS unused
+P2IE 40004C1B
+
+Symbol: P2IE
+   Definitions
+      At line 26 in file template.s
+   Uses
+      None
+Comment: P2IE unused
+P2IES 40004C19
+
+Symbol: P2IES
+   Definitions
+      At line 24 in file template.s
+   Uses
+      None
+Comment: P2IES unused
+P2IFG 40004C1D
+
+Symbol: P2IFG
+   Definitions
+      At line 28 in file template.s
+   Uses
+      None
+Comment: P2IFG unused
+P2IN 40004C01
+
+Symbol: P2IN
+   Definitions
+      At line 8 in file template.s
+   Uses
+
+
+
+ARM Macro Assembler    Page 6 Alphabetic symbol ordering
+Absolute symbols
+
+      None
+Comment: P2IN unused
+P2OUT 40004C03
+
+Symbol: P2OUT
+   Definitions
+      At line 9 in file template.s
+   Uses
+      None
+Comment: P2OUT unused
+P2REN 40004C07
+
+Symbol: P2REN
+   Definitions
+      At line 14 in file template.s
+   Uses
+      None
+Comment: P2REN unused
+P2SEL0 40004C0B
+
+Symbol: P2SEL0
+   Definitions
+      At line 18 in file template.s
+   Uses
+      None
+Comment: P2SEL0 unused
+P2SEL1 40004C0D
+
+Symbol: P2SEL1
+   Definitions
+      At line 20 in file template.s
+   Uses
+      None
+Comment: P2SEL1 unused
+P2SELC 40004C17
+
+Symbol: P2SELC
+   Definitions
+      At line 22 in file template.s
+   Uses
+      None
+Comment: P2SELC unused
+42 symbols
+387 symbols in table

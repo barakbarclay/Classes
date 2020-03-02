@@ -1,0 +1,47 @@
+#!/bin/csh
+#Author:        Barak Barclay
+#Class:         CS2080.001
+#Title:         Backup
+#Due Date:      9 April 2018
+#Description:   This script creates backups of the files listed in
+#		the file passed. These backups are saved in the
+#		directory passed with .bak extensions. The first
+#		argument is used for the file while the second
+#		argument is used for the directory. This scripts
+#		checks that only two arguments are passed, the first
+#		argument is a file, and the second argument is a
+#		directory. If the arguments do not pass these 
+#		checks, then the script will exit and the
+#		corresponding exit values will be used. Otherwise,
+#		the script will go on to create backups of the files
+#		listed in the passed file. 
+#
+#Exit Values
+#       0       if sucessfully completed
+#       10      incorrect number of arguments
+#       20	arg1 does not exist or is not a file
+#	30	arg2 does not exist is not a directory
+
+#validate$#argvs
+if ( $#argv != 2 ) then
+	echo This script requires two arguments.
+	exit 10
+endif
+
+#validateFile
+if ( ! -f "$argv[1]" ) then
+        echo "$argv[1] does not exist or is not a file." 
+        exit 20
+endif
+
+#validateDirectory
+if ( ! -d "$argv[2]" ) then
+        echo "$argv[2] does not exist or is not a diectory."
+        exit 30
+endif
+
+#Copies the files listed in the passed file to the passed directory
+foreach file ( `cat $argv[1]` )
+	cp $file $argv[2]/$file.bak
+end
+exit 0

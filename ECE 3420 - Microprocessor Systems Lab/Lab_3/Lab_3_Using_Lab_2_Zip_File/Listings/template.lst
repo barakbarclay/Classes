@@ -1,0 +1,189 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;.global main
+    2 00000000         
+    3 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
+2
+    4 00000000         ;    INCLUDE msp432.h
+    5 00000000                 THUMB
+    6 00000000         
+    7 00000000         __main                               ; Code entry
+    8 00000000         
+    9 00000000         _init                                ; Disable watchdog 
+                                                            timer
+   10 00000000         
+   11 00000000         main                                 ; <Add your code he
+                                                            re>
+   12 00000000         
+   13 00000000 F04F 0000       MOV              R0, #0x00000000
+   14 00000004 F04F 0109       MOV              R1, #0x00000009
+   15 00000008 F04F 5200       MOV              R2, #0x20000000
+   16 0000000C F04F 0310       MOV              R3, #0x00000010
+   17 00000010 F04F 0419       MOV              R4, #0x00000019
+   18 00000014 F04F 0500       MOV              R5, #0x00000000
+   19 00000018 F04F 0600       MOV              R6, #0x00000000
+   20 0000001C F04F 0700       MOV              R7, #0x00000000
+   21 00000020         
+   22 00000020 F802 0B01 
+                       loop    STRB             R0,[R2],#1
+   23 00000024 F100 0001       ADD              R0,R0,#0x00000001
+   24 00000028 4288            CMP              R0,R1
+   25 0000002A DC00            BGT              loop2
+   26 0000002C E7F8            B                loop
+   27 0000002E         
+   28 0000002E F802 3B01 
+                       loop2   STRB             R3,[R2],#1
+   29 00000032 F103 0301       ADD              R3,R3,#0x00000001
+   30 00000036 42A3            CMP              R3,R4
+   31 00000038 DC00            BGT              addints
+   32 0000003A E7F8            B                loop2
+   33 0000003C         
+   34 0000003C F04F 0000 
+                       addints MOV              R0, #0x00000000
+   35 00000040 F04F 0109       MOV              R1, #0x00000009
+   36 00000044 F04F 5200       MOV              R2, #0x20000000
+   37 00000048 F812 7B01 
+                       loop3   LDRB             R7,[R2],#1
+   38 0000004C 443D            ADD              R5,R5,R7
+   39 0000004E F100 0001       ADD              R0,R0,#0x00000001
+   40 00000052 4288            CMP              R0,R1
+   41 00000054 DC00            BGT              subints
+   42 00000056 E7F7            B                loop3
+   43 00000058         
+   44 00000058 F04F 0000 
+                       subints MOV              R0, #0x00000000
+   45 0000005C F04F 0100       MOV              R1, #0x00000000
+   46 00000060 F04F 5200       MOV              R2, #0x20000000
+   47 00000064 F812 0B01       LDRB             R0,[R2],#1
+   48 00000068 7811            LDRB             R1,[R2]
+   49 0000006A 1A46            SUBS             R6,R0,R1
+   50 0000006C         
+   51 0000006C E7FE    stop    B                stop
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   52 0000006E BF00            NOP
+   53 00000070         
+   54 00000070 46 6F 6F 
+              00       str     DCB              "Foo",0
+   55 00000074         
+   56 00000074                 EXPORT           __main
+   57 00000074                 EXPORT           main
+   58 00000074                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
+erwork --depend=.\objects\template.d -o.\objects\template.o -I"Z:\Desktop\Colle
+ge\MCS Lab\Lab_3\Lab_3_Using_Lab_2_Zip_File\RTE" -IC:\Keil_v5\ARM\PACK\ARM\CMSI
+S\5.0.0-Beta4\CMSIS\Include -IC:\Keil_v5\ARM\PACK\TexasInstruments\MSP432P4xx_D
+FP\2.2.1\Device\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERS
+ION SETA 520" --predefine="_RTE_ SETA 1" --predefine="__MSP432P401R__ SETA 1" -
+-list=.\listings\template.lst template.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 3 in file template.s
+   Uses
+      None
+Comment: .text unused
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 7 in file template.s
+   Uses
+      At line 56 in file template.s
+Comment: __main used once
+_init 00000000
+
+Symbol: _init
+   Definitions
+      At line 9 in file template.s
+   Uses
+      None
+Comment: _init unused
+addints 0000003C
+
+Symbol: addints
+   Definitions
+      At line 34 in file template.s
+   Uses
+      At line 31 in file template.s
+Comment: addints used once
+loop 00000020
+
+Symbol: loop
+   Definitions
+      At line 22 in file template.s
+   Uses
+      At line 26 in file template.s
+Comment: loop used once
+loop2 0000002E
+
+Symbol: loop2
+   Definitions
+      At line 28 in file template.s
+   Uses
+      At line 25 in file template.s
+      At line 32 in file template.s
+
+loop3 00000048
+
+Symbol: loop3
+   Definitions
+      At line 37 in file template.s
+   Uses
+      At line 42 in file template.s
+Comment: loop3 used once
+main 00000000
+
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+Symbol: main
+   Definitions
+      At line 11 in file template.s
+   Uses
+      At line 57 in file template.s
+Comment: main used once
+stop 0000006C
+
+Symbol: stop
+   Definitions
+      At line 51 in file template.s
+   Uses
+      At line 51 in file template.s
+Comment: stop used once
+str 00000070
+
+Symbol: str
+   Definitions
+      At line 54 in file template.s
+   Uses
+      None
+Comment: str unused
+subints 00000058
+
+Symbol: subints
+   Definitions
+      At line 44 in file template.s
+   Uses
+      At line 41 in file template.s
+Comment: subints used once
+11 symbols
+346 symbols in table

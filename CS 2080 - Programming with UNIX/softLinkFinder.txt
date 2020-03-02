@@ -1,0 +1,35 @@
+#!/bin/csh
+#Author:        Barak Barclay
+#Class:         CS2080.001
+#Title:         Soft Link Finder
+#Due Date:      21 March 2018
+#Description:   This script finds all soft links to a
+#		specific file. If more or less than
+#		one argument is entered, it will print
+#		an error message. If one argument is
+#		entered and the file does not exist or
+#		is empty, it will print an error message.
+#		If both of these checks are passed, the
+#		soft links to the file will be found and 
+#		printed. 
+#
+#Exit Values
+#       0       if sucessfully completed
+#       10      incorrect number of arguments
+#       20	file does not exist or is empty 
+
+#validate$#argvs
+if ( $#argv != 1 ) then
+	echo This script requires one argument.
+	exit 10
+endif
+
+#validateFile
+if ( ! -s "$argv[1]" ) then
+        echo "$argv[1] does not exist or is empty." 
+        exit 20
+endif
+
+#Finds and prints the soft links of the file
+ls -l | grep '^[l].*'"$argv[1]"'$'
+exit 0

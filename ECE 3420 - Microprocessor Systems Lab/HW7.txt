@@ -1,0 +1,258 @@
+1.)
+;
+; Author: Matt Laubhan
+; Date: 11/17/2014
+; Title: ECE 3430 homework 7 solution
+;
+#include "msp430.h" 
+
+;
+; This is a basic template for the MSP430(G2553).
+; The I2C.r43 library should be linked into this build to resolve references
+; to the subroutines defined as EXTERN below.
+;
+
+RESET   EQU     0FFFEh
+RAM     EQU     00200h
+FLASH   EQU     0C000h
+
+;
+; The possible "Address" values to be passed into the subroutines below.
+;
+I2C_0   EQU     00000000b   // A2-A0: 000
+I2C_1   EQU     00000010b   // A2-A0: 001
+I2C_2   EQU     00000100b   // A2-A0: 010
+I2C_3   EQU     00000110b   // A2-A0: 011
+I2C_4   EQU     00001000b   // A2-A0: 100
+I2C_5   EQU     00001010b   // A2-A0: 101
+I2C_6   EQU     00001100b   // A2-A0: 110
+I2C_7   EQU     00001110b   // A2-A0: 111
+
+;
+; Routines below come from external I2C module
+;
+
+; No parameters
+        EXTERN  InitI2C
+  
+; Address in R12 (just A3-A1 required) - A2-A0 pins left-shifted one
+; On return:  R12 = 1 if A part exists, R12 = 2 if _ part exists, R12 = 0 if no device
+        EXTERN  ChkI2C
+        
+; Address in R12 (just A3-A1 required) - A2-A0 pins left-shifted one
+; Data to output in R13
+        EXTERN  OutI2C
+        
+; Address in R12 (just A3-A1 required) - A2-A0 pins left-shifted one
+; Data received in R12 on return
+        EXTERN  InI2C
+        
+        PUBLIC  main
+
+        ORG     RESET
+        DC16    init                    ; Set reset vector to 'init' label
+        
+        ORG     0xFFF2                  ; interrupt vector for TA0.0
+        DC16    EdgeIsr
+        
+        ORG     RAM
+        
+        ; no globals used in order to increase instruction execution speed
+        
+        ORG     FLASH
+        
+init:   mov     #0400h, SP              ; Set up stack pointer
+        mov     #WDTPW+WDTHOLD,&WDTCTL  ; Stop watchdog timer
+        
+main:   bis.b   #00000100b, &P2DIR   ; P2.2 is output
+        bis.b   #00000100b, &P2SEL   ; P2.2 attached to timer
+        
+        bic.b   #00000011b, &P2DIR   ; P2.1 and P2.0 are input
+        
+        bic.b   #00000010b, &P1DIR   ; P1.1 is input
+        bis.b   #00000010b, &P1SEL   ; P1.1 is attached to timer
+        
+        bis.b   #01000000b, &P1DIR   ; make P1.7 and output (for LED)
+        bis.b   #01000000b, &P1OUT
+        bic.b   #01000000b, &P1OUT
+        
+        mov.w   #TASSEL_2+ID_0+MC_2, TA0CTL ; count in continuous mode
+        mov.w   #TASSEL_2+ID_0+MC_1,TA1CTL  ; count in "up" mode
+        
+        mov.w   #CM_3+CCIS_0+SCS+CAP+CCIE, TA0CCTL0  ; for input capture (both edges), generate interrupts
+        mov.w   #OUTMOD_7, TA1CCTL1  ; for output compare (reset/set), no interrupts
+    
+        mov.w   #0xFFFF, TA1CCR0    ; default to 15-16 Hz and ~50% duty cycle until first edge
+        mov.w   #0x7FFF, TA1CCR1
+        
+        eint                 ; enable interrupts
+        
+        bis     #LPM0, SR    ; sleep when not processing an edge (keep clocks running)
+      
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; Called by timer when capture block detects a rising or falling edge.
+;
+; HighT => R4
+; LowT => R5
+; PrevT => R6
+; CurrT => R7
+; Period => R15 (R4+R5)
+;
+; Since there is nothing else going on in the MSP430, I'll skip
+; all the do-no-damage to save execution time!
+;
+EdgeIsr:
+        bis.b   #01000000b, &P1OUT ; illuminate P1.6 LED while in ISR
+        
+        mov     TA0CCR0, R7  ; grab captured time
+        bit     #CCI, TA0CCTL0 ; check edge
+        jne     StLow
+        
+StHigh: mov     R7, R4    ; HighT = CurrT
+        sub     R6, R4    ; HighT = CurrT - PrevT
+        mov     R7, R6    ; PrevT = CurrT
+        
+        jmp     Lv        ; exit early and wait for other edge
+        
+StLow:  mov     R7, R5    ; LowT = CurrT
+        sub     R6, R5    ; LowT = CurrT - PrevT
+        mov     R7, R6    ; PrevT = CurrT
+
+  ; Uncomment the three lines below to short-circuit this ISR for testing...what
+  ; goes in is regenerated without modification on output...
+  ;      mov     R4, R9
+  ;      mov     R5, R10
+  ;      jmp     Rj2
+;
+; HighT and LowT are calculated, now calculate new
+; values for TA1CCR0 and TA1CCR1...
+;
+; Only update the output compare registers when
+; the pair of HighT and LowT variables have been
+; calculated (after the LowT)
+;
+        mov     R4, R15
+        add     R5, R15   ; R15 is period (H + L)
+        
+;
+; Pick the appropriate mode...
+;
+        mov.b   &P2IN, R8
+        and     #11b, R8
+        jeq     M0
+        cmp     #01b, R8
+        jeq     M1
+        cmp     #10b, R8
+        jeq     M2
+
+;;;;;;;;;;;;;;;;
+; Mode: 11
+;
+; HighT = R4
+; LowT = R5
+; Period = R15
+; Ht = R9
+; Lt = R10
+;
+; Swap high and low times to invert duty cycle
+;
+; R10 = (R4 << 1) + R4
+; R9 = (R5 << 1) + R5
+;
+M3:     mov     R4, R10
+        rla     R10
+        add     R4, R10
+        mov     R5, R9
+        rla     R9
+        add     R5, R9
+        jmp     Rj2
+    
+;;;;;;;;;;;;;;;;
+; Mode: 10
+;
+; HighT = R4
+; LowT = R5
+; Period = R15
+; Ht = R9
+; Lt = R10
+;
+; R9 = R15 + (R15 >> 1)
+; R10 = R9
+;
+M2:     mov     R15, R9
+        clrc
+        rrc     R9
+        add     R15, R9
+        mov     R9, R10
+        jmp     Rj2
+
+;;;;;;;;;;;;;;;;
+; Mode: 01
+;
+; HighT = R4
+; LowT = R5
+; Period = R15
+; Ht = R9
+; Lt = R10
+;
+; Swap high and low times to invert duty cycle
+;
+; R10 = R4 >> 1
+; R9 = R5 >> 1
+;
+M1:     mov     R4, R10
+        clrc
+        rrc     R10
+        mov     R5, R9
+        clrc
+        rrc     R9
+        jmp     Rj2
+        
+;;;;;;;;;;;;;;;;
+; Mode: 00
+;
+; HighT = R4
+; LowT = R5
+; Period = R15
+; Ht = R9
+; Lt = R10
+;
+; R9 = R15 >> 2
+; R10 = R9
+;
+M0:     mov     R15, R9
+        clrc
+        rrc     R9
+        clrc
+        rrc     R9
+        mov     R9, R10
+        jmp     Rj2
+
+;
+; Now store the new TA1CCR1 and TA1CCR0 values
+; as close to simultaneously as possible (right
+; next to one another).
+;
+; It is not necessary to clear the CCIFG flag in the TA0CCTL0
+; register before leaving this ISR only because the hardware
+; has already done this for me.  The reason:  there is only one
+; potential source for interrupt vector 0xFFF2 (TA0CCR0 CCIFG).
+; When there is no ambiguity as to the source of the interrupt,
+; the MSP430 hardware helps us by clearing the flag for us.
+;
+Rj2:    mov     R9, &TA1CCR1
+        add     R9, R10
+        mov     R10, &TA1CCR0
+
+Lv:     bic.b   #01000000b, &P1OUT ; extinguish P1.6 LED before leaving ISR
+        reti
+
+        END
+
+2.) 
+a. When the input frequency becomes too high, the time between consecutive interrupts becomes too short for the CPU to keep up.  Even if the ISR was instantaneous, eventually the two edges would capture the same TAR value since TAR is not counting forward quickly enough.  A longer ISR will further limit the highest frequency that can be measured.  Shorter ISRs will allow the system to measure faster frequencies.
+b. In this situation, the 16-bit TAR register will overflow more than once.  Since we are not accounting for multiple timer (TAR) overflow events, the actual frequency would be measured higher than what it really is.  The limited precision of the TAR register and the capture registers puts a floor on the slowest frequency we can measure.
+c. The limit is due to the limited resolution of the 16-bit TAR timer.  At some point, the calculated period becomes 0.
+d. In this situation, the calculated values of Ht and/or Lt would exceed 16-bit precision (requiring a wider register).  Since we are bound to 16-bit limitations, this puts a floor on the lowest frequency we can generate.
+e. This puts an inherent limit on the maximum frequency that can be measured via input capture without encountering capture overflow (a second capture to TA0CCR0 before the previous capture was copied).

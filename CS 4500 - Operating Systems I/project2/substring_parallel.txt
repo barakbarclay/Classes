@@ -1,0 +1,135 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <pthread.h>
+ 
+#define NUM_THREADS  1
+#define MAX 1024
+
+int total = 0;
+int stop1 = 0;
+int stop2 = 0;
+int n1, n2, nh;
+char *s1, *s2;
+FILE *fp;
+
+//reads file
+int readf(FILE *fp)
+{
+	if((fp=fopen("strings.txt", "r"))==NULL){
+		printf("ERROR: can't open string.txt!\n");
+		return 0;
+	}
+	s1=(char *)malloc(sizeof(char)*MAX);
+	if(s1==NULL){
+		printf("ERROR: Out of memory!\n");
+		return -1;
+	}
+	s2=(char *)malloc(sizeof(char)*MAX);
+	if(s2==NULL){
+		printf("ERROR: Out of memory\n");
+		return -1;
+	}
+	/*read s1 s2 from the file*/
+	s1=fgets(s1, MAX, fp);
+	s2=fgets(s2, MAX, fp);
+	n1=strlen(s1)-1;  /*length of s1*/
+	n2=strlen(s2)-1;  /*length of s2*/
+	nh=(n1/2)-1;
+
+	if (s1==NULL || s2==NULL  || n1<n2)  /*when error exit*/
+		return -1;
+}
+
+//scans first half of string
+void* read_first(void *foo)
+{
+	int i,j,k;
+	int count;
+
+	for (i = 0; i <= (nh-n2); i++){
+		count=0;
+		for(j = i, k = 0; k < n2; j++, k++){  /*search for the next string of size n2*/
+			if (*(s1+j) !=* (s2+k)){
+				break;
+			}
+			else
+				count++;
+				
+			if(count==n2){
+				total++;  /*find a substring in this step*/
+				stop1 = j;
+			}
+		}
+	}
+	pthread_exit(NULL);
+}
+
+//scans second half of string
+void* read_second(void* foo)
+{
+	int i,j,k;
+	int count;
+
+	for (i = nh+1; i <= (n1-n2); i++){
+		count=0;
+		for(j = i, k = 0; k < n2; j++, k++){  /*search for the next string of size n2*/
+			if (*(s1+j) !=* (s2+k)){
+				break;
+			}
+			else
+				count++;
+
+			if(count==n2){
+				total++;  /*find a substring in this step*/
+				stop2 =j;
+			}
+		}
+	}
+pthread_exit (NULL);
+}
+
+//scans middle of string 
+void* read_again(void *foo) /*reads section of string over partition*/
+{
+
+	int i,j,k;
+	int count;
+
+	for (i = (nh-(n2-1)); i <= (nh+n2-2); i++){
+		count=0;
+		for(j = i, k = 0; k < n2; j++, k++){  /*search for the next string of size n2*/
+			if (*(s1+j) !=* (s2+k)){
+				break;
+			}
+			else
+				count++;
+
+			if(count==n2){
+				total++;  /*find a substring in this step*/
+				stop2 =j;
+			}
+		}
+	}
+	printf("The number of substrings is: %d\n", total);
+	pthread_exit(NULL);
+}
+
+int main(int argc, char *argv[])
+{
+	int count;
+
+	readf(fp);
+	
+	/*creating threads*/
+	pthread_t first,second,again;
+	pthread_create(&first, NULL, read_first, NULL);
+	pthread_create(&second, NULL, read_second, NULL);
+	pthread_join(second, NULL);
+	pthread_create(&again, NULL, read_again, NULL);
+	
+
+	count = total;
+	pthread_exit(NULL);
+	return 1;
+}
